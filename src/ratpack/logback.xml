@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>{"@timestamp": "%d","@version": "1","message": "%m at %C:%M","type": "book_api","tags": ["workcenter-api"],"level": "%-5p"}%n</pattern>
+            <!-- #COMMENT: Leaving immediateFlush to default(true) for now to avoid the implementation of a hook to close all the appenders prior to exiting the application -->
+            <!-- <immediateFlush>false</immediateFlush> -->
+        </encoder>
+    </appender>
+
+    <appender name="ASYNC-APPENDER" class="ch.qos.logback.classic.AsyncAppender">
+        <queueSize>500</queueSize>
+        <includeCallerData>true</includeCallerData>
+        <appender-ref ref="STDOUT"/>
+    </appender>
+
+    <!--<logger name="io.gatling.http.ahc" level="WARN" />-->
+    <!--<logger name="io.gatling.http.response" level="WARN" />-->
+
+    <root level="DEBUG">
+        <appender-ref ref="ASYNC-APPENDER"/>
+    </root>
+
+</configuration>

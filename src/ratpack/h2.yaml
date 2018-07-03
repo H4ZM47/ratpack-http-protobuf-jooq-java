@@ -1,0 +1,5 @@
+db:
+  dataSourceClassName: org.h2.jdbcx.JdbcDataSource
+  username: sa
+  password:
+
